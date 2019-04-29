@@ -118,12 +118,12 @@
     <ClInclude Include="AbstractAlgorithm.h" />
     <ClInclude Include="AlgorithmRegistration.h" />
     <ClInclude Include="MainAux.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Algorithm1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainAux.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Algorithm1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

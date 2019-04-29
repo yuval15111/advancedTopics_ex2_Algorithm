@@ -1,18 +1,18 @@
-#include "Player.h"
+#include "Algorithm1.h"
 #include <time.h>
 
 
-Player::Player() {
-	m_bookmark = make_pair(0, 0); // first bookmark in starting point
+Algorithm1::Algorithm1() {
+	m_bookmarkVector.push_back(make_pair(0, 0)); // first bookmark in starting point
 	m_location = make_pair(0, 0);
 	updateMapping(m_location, SPACE_CHAR);
-	m_action = Move::BOOKMARK;
+	m_currMove = Move::BOOKMARK;
 }
 
 
-void Player::updateLocation(bool undo) {
-	m_action = undo ? !m_action : m_action;
-	switch (m_action) {
+void Algorithm1::updateLocation(bool undo) {
+	m_currMove = undo ? !m_currMove : m_currMove;
+	switch (m_currMove) {
 	case Move::UP:
 		m_location.first = (m_location.first + 1) % m_rowsNum;
 		break;
@@ -34,7 +34,7 @@ void Player::updateLocation(bool undo) {
 
 /*	params: Coordinate and action
 	return: New coordinate according to movement */
-Coordinate Player::getCoordinateByAction(Coordinate loc, const Move & a) {
+Coordinate Algorithm1::getCoordinateByMove(Coordinate loc, const Move & a) {
 	switch (a) {
 	case Move::UP:
 		loc.first = (loc.first + 1) % m_rowsNum;
@@ -57,69 +57,69 @@ Coordinate Player::getCoordinateByAction(Coordinate loc, const Move & a) {
 	return loc;
 }
 
-void Player::updateMapping(Coordinate loc, char c) {
+void Algorithm1::updateMapping(Coordinate loc, char c) {
 	m_mazeMapping[loc] = c;
 }
 
-Move Player::move() {
-	generateAction(findExclusions());
-	if (m_action == Move::BOOKMARK) return m_action; // no updates needed in player's other fields
+Move Algorithm1::move() {
+	generateMove(findExclusions());
+	if (m_currMove == Move::BOOKMARK) return m_currMove; // no updates needed in player's other fields
 	updateLocation();
 	if (m_mazeMapping.find(m_location) == m_mazeMapping.end()) updateMapping(m_location, SPACE_CHAR);
-	return m_action;
+	return m_currMove;
 }
 
 // we update here the mapping with the wall we saw, the player location and undo the path
-void Player::hitWall()
+void Algorithm1::hitWall()
 {
 	updateMapping(m_location, WALL_CHAR);
 	updateLocation(true); // undo
 }
 
-void Player::hitBookmark(int seq)
+void Algorithm1::hitBookmark(int seq)
 {
-	if (m_bookmark == m_location) return;
+	if (m_bookmarkVector[seq] == m_location) return;
 	else {
-		if (m_bookmark.first == m_location.first) { // Defines col dimention
-			m_colsNum = ABS(m_bookmark.second, m_location.second);
+		if (m_bookmarkVector[seq].first == m_location.first) { // Defines col dimention
+			m_colsNum = ABS(m_bookmarkVector[seq].second, m_location.second);
 			arrangeMapping(false);
 		}
-		else if (m_bookmark.second == m_location.second) {
-			m_rowsNum = ABS(m_bookmark.first, m_location.first);
+		else if (m_bookmarkVector[seq].second == m_location.second) {
+			m_rowsNum = ABS(m_bookmarkVector[seq].first, m_location.first);
 			arrangeMapping(true);
 		}
-		m_location = getCoordinateByAction(m_location, Move::BOOKMARK);
-		m_bookmark = getCoordinateByAction(m_bookmark, Move::BOOKMARK);
+		m_location = getCoordinateByMove(m_location, Move::BOOKMARK);
+		m_bookmarkVector[seq] = getCoordinateByMove(m_bookmarkVector[seq], Move::BOOKMARK);
 	}
 }
 
-void Player::generateAction(vector<Move> exclusions) {
-	if (m_actionVector.size() % STEPS_NUM_TO_BOOKMARK == 0) {	// TIME FOR A BOOKMARK
-		m_action = Move::BOOKMARK;
-		m_bookmark = m_location;
+void Algorithm1::generateMove(vector<Move> exclusions) {
+	if (m_moveVector.size() % STEPS_NUM_TO_BOOKMARK == 0) {	// TIME FOR A BOOKMARK
+		m_currMove = Move::BOOKMARK;
+		m_bookmarkVector.push_back(m_location);
 	}
 	else {														// STEP ACTION
 		srand((unsigned int)time(0));
 		// generates a step action until it finds an action not in exclusions
 		do {
-			m_action = Move(rand() % NUM_OF_STEPS);
+			m_currMove = Move(rand() % NUM_OF_STEPS);
 		} while (inVector(exclusions));
 	}
-	if (numOfSteps() != 0 && m_action == m_actionVector[numOfSteps() - 1]) m_currActionCounter++; // updates the current action counter
-	else if (m_action != Move::BOOKMARK) m_currActionCounter = 1;
-	m_actionVector.push_back(m_action); // push action into the action list
+	if (numOfSteps() != 0 && m_currMove == m_moveVector[numOfSteps() - 1]) m_currMoveCounter++; // updates the current action counter
+	else if (m_currMove != Move::BOOKMARK) m_currMoveCounter = 1;
+	m_moveVector.push_back(m_currMove); // push action into the action list
 }
 
-bool Player::inVector(vector<Move> exclusions) {
+bool Algorithm1::inVector(vector<Move> exclusions) {
 	for (vector<Move>::iterator it = exclusions.begin(); it != exclusions.end(); ++it) {
-		if (*it == m_action)
+		if (*it == m_currMove)
 			return true;
 	}
 	return false;
 }
 
 /*	return: vector of actions which none of them won't be chosen as the next action */
-vector<Move> Player::findExclusions()
+vector<Move> Algorithm1::findExclusions()
 {
 	vector<Move> exclusions;
 
@@ -134,8 +134,8 @@ vector<Move> Player::findExclusions()
 	int wall = 0;
 
 	// We won't allow more than MAX_SAME_ACTION_NUM steps of the same action.
-	if (m_currActionCounter == MAX_SAME_ACTION_NUM) {
-		exclusions.push_back(m_action);
+	if (m_currMoveCounter == MAX_SAME_ACTION_NUM) {
+		exclusions.push_back(m_currMove);
 	}
 
 	for (int i = 0; i < NUM_OF_STEPS; ++i) {
@@ -165,7 +165,7 @@ vector<Move> Player::findExclusions()
 }
 
 
-void Player::arrangeMapping(bool rows)
+void Algorithm1::arrangeMapping(bool rows)
 {
 	map <Coordinate, char> newMapping;
 	if (rows) {
@@ -190,9 +190,9 @@ void Player::arrangeMapping(bool rows)
 	m_mazeMapping = newMapping;
 }
 
-char Player::getCharByDirection(Move a)
+char Algorithm1::getCharByDirection(Move a)
 {
-	Coordinate key = getCoordinateByAction(m_location, a);
+	Coordinate key = getCoordinateByMove(m_location, a);
 	if (m_mazeMapping.find(key) != m_mazeMapping.end())
 		return m_mazeMapping[key];
 	return '0';
