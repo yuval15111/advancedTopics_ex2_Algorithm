@@ -1,6 +1,7 @@
 #include "Algorithm1.h"
 #include <time.h>
 
+REGISTER_ALGORITHM(308243351)
 
 Algorithm1::Algorithm1() {
 	m_bookmarkVector.push_back(make_pair(0, 0)); // first bookmark in starting point

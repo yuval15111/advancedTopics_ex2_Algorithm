@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "AbstractAlgorithm.h"
+#include "AlgorithmRegistration.h"
 #include "MainAux.h"
 
 #define STEPS_NUM_TO_BOOKMARK 25
