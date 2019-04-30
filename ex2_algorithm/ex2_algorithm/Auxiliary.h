@@ -1,5 +1,5 @@
-#ifndef MAINAUX_H
-#define MAINAUX_H
+#ifndef AUXILIARY_H
+#define AUXILIARY_H
 
 #include <cstdlib>
 #include <stdlib.h>

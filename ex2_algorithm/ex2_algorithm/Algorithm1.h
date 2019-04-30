@@ -3,7 +3,7 @@
 
 #include "AbstractAlgorithm.h"
 #include "AlgorithmRegistration.h"
-#include "MainAux.h"
+#include "Auxiliary.h"
 
 #define STEPS_NUM_TO_BOOKMARK 25
 #define MAX_SAME_ACTION_NUM 30

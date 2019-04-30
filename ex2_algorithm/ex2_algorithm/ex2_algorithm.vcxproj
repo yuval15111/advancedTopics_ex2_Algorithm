@@ -117,12 +117,11 @@
   <ItemGroup>
     <ClInclude Include="AbstractAlgorithm.h" />
     <ClInclude Include="AlgorithmRegistration.h" />
-    <ClInclude Include="MainAux.h" />
+    <ClInclude Include="Auxiliary.h" />
     <ClInclude Include="Algorithm1.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainAux.cpp" />
+    <ClCompile Include="Auxiliary.cpp" />
     <ClCompile Include="Algorithm1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

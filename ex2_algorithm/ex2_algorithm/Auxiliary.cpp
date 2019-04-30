@@ -1,4 +1,4 @@
-#include "MainAux.h"
+#include "Auxiliary.h"
 
 /* return: the opposite direction of Move a */
 Move operator!(const Move& a) {
