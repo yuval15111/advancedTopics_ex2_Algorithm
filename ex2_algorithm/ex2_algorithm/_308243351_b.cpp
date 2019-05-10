@@ -4,7 +4,6 @@
 REGISTER_ALGORITHM (_308243351_b)
 
 _308243351_b::_308243351_b() {
-	m_bookmarkVector.push_back(make_pair(0, 0)); // first bookmark in starting point
 	m_location = make_pair(0, 0);
 	updateMapping(m_location, SPACE_CHAR);
 	m_currMove = Move::BOOKMARK;

@@ -4,7 +4,6 @@
 REGISTER_ALGORITHM (_308243351_a)
 
 _308243351_a::_308243351_a() {
-	m_bookmarkVector.push_back(make_pair(0, 0)); // first bookmark in starting point
 	m_location = make_pair(0, 0);
 	updateMapping(m_location, SPACE_CHAR);
 	m_currMove = Move::BOOKMARK;
@@ -97,6 +96,8 @@ void _308243351_a::hitBookmark(int seq)
 void _308243351_a::generateMove(vector<Move> exclusions) {
 	if (m_moveVector.size() % STEPS_NUM_TO_BOOKMARK == 0) {	// TIME FOR A BOOKMARK
 		m_currMove = Move::BOOKMARK;
+		for(unsigned int i = 0; i < m_bookmarkVector.size(); ++i)
+			cout << "BOOKMARK AT: " << m_bookmarkVector[i].first <<", " << m_bookmarkVector[i].second << endl;
 		m_bookmarkVector.push_back(m_location);
 	}
 	else {														// STEP ACTION
