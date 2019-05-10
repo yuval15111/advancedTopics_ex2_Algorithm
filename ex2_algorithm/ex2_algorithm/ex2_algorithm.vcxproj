@@ -118,11 +118,13 @@
     <ClInclude Include="AbstractAlgorithm.h" />
     <ClInclude Include="AlgorithmRegistration.h" />
     <ClInclude Include="Auxiliary.h" />
-    <ClInclude Include="Algorithm1.h" />
+    <ClInclude Include="_308243351_a.h" />
+    <ClInclude Include="_308243351_b.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Auxiliary.cpp" />
-    <ClCompile Include="Algorithm1.cpp" />
+    <ClCompile Include="_308243351_a.cpp" />
+    <ClCompile Include="_308243351_b.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

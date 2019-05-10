@@ -1,9 +1,9 @@
-#include "Algorithm1.h"
+#include "_308243351_a.h"
 #include <time.h>
 
-REGISTER_ALGORITHM (Algorithm1)
+REGISTER_ALGORITHM (_308243351_a)
 
-Algorithm1::Algorithm1() {
+_308243351_a::_308243351_a() {
 	m_bookmarkVector.push_back(make_pair(0, 0)); // first bookmark in starting point
 	m_location = make_pair(0, 0);
 	updateMapping(m_location, SPACE_CHAR);
@@ -11,7 +11,7 @@ Algorithm1::Algorithm1() {
 }
 
 
-void Algorithm1::updateLocation(bool undo) {
+void _308243351_a::updateLocation(bool undo) {
 	m_currMove = undo ? !m_currMove : m_currMove;
 	switch (m_currMove) {
 	case Move::UP:
@@ -35,7 +35,7 @@ void Algorithm1::updateLocation(bool undo) {
 
 /*	params: Coordinate and action
 	return: New coordinate according to movement */
-Coordinate Algorithm1::getCoordinateByMove(Coordinate loc, const Move & a) {
+Coordinate _308243351_a::getCoordinateByMove(Coordinate loc, const Move & a) {
 	switch (a) {
 	case Move::UP:
 		loc.first = (loc.first + 1) % m_rowsNum;
@@ -58,11 +58,11 @@ Coordinate Algorithm1::getCoordinateByMove(Coordinate loc, const Move & a) {
 	return loc;
 }
 
-void Algorithm1::updateMapping(Coordinate loc, char c) {
+void _308243351_a::updateMapping(Coordinate loc, char c) {
 	m_mazeMapping[loc] = c;
 }
 
-Move Algorithm1::move() {
+Move _308243351_a::move() {
 	generateMove(findExclusions());
 	if (m_currMove == Move::BOOKMARK) return m_currMove; // no updates needed in player's other fields
 	updateLocation();
@@ -71,13 +71,13 @@ Move Algorithm1::move() {
 }
 
 // we update here the mapping with the wall we saw, the player location and undo the path
-void Algorithm1::hitWall()
+void _308243351_a::hitWall()
 {
 	updateMapping(m_location, WALL_CHAR);
 	updateLocation(true); // undo
 }
 
-void Algorithm1::hitBookmark(int seq)
+void _308243351_a::hitBookmark(int seq)
 {
 	if (m_bookmarkVector[seq] == m_location) return;
 	else {
@@ -94,7 +94,7 @@ void Algorithm1::hitBookmark(int seq)
 	}
 }
 
-void Algorithm1::generateMove(vector<Move> exclusions) {
+void _308243351_a::generateMove(vector<Move> exclusions) {
 	if (m_moveVector.size() % STEPS_NUM_TO_BOOKMARK == 0) {	// TIME FOR A BOOKMARK
 		m_currMove = Move::BOOKMARK;
 		m_bookmarkVector.push_back(m_location);
@@ -111,7 +111,7 @@ void Algorithm1::generateMove(vector<Move> exclusions) {
 	m_moveVector.push_back(m_currMove); // push action into the action list
 }
 
-bool Algorithm1::inVector(vector<Move> exclusions) {
+bool _308243351_a::inVector(vector<Move> exclusions) {
 	for (vector<Move>::iterator it = exclusions.begin(); it != exclusions.end(); ++it) {
 		if (*it == m_currMove)
 			return true;
@@ -120,7 +120,7 @@ bool Algorithm1::inVector(vector<Move> exclusions) {
 }
 
 /*	return: vector of actions which none of them won't be chosen as the next action */
-vector<Move> Algorithm1::findExclusions()
+vector<Move> _308243351_a::findExclusions()
 {
 	vector<Move> exclusions;
 
@@ -166,7 +166,7 @@ vector<Move> Algorithm1::findExclusions()
 }
 
 
-void Algorithm1::arrangeMapping(bool rows)
+void _308243351_a::arrangeMapping(bool rows)
 {
 	map <Coordinate, char> newMapping;
 	if (rows) {
@@ -191,7 +191,7 @@ void Algorithm1::arrangeMapping(bool rows)
 	m_mazeMapping = newMapping;
 }
 
-char Algorithm1::getCharByDirection(Move a)
+char _308243351_a::getCharByDirection(Move a)
 {
 	Coordinate key = getCoordinateByMove(m_location, a);
 	if (m_mazeMapping.find(key) != m_mazeMapping.end())

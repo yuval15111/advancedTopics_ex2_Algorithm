@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef _308243351_B_H
+#define _308243351_B_H
 
 #include "AbstractAlgorithm.h"
 #include "AlgorithmRegistration.h"
@@ -8,9 +8,9 @@
 #define STEPS_NUM_TO_BOOKMARK 25
 #define MAX_SAME_ACTION_NUM 30
 
-class Algorithm1 : public AbstractAlgorithm {
+class _308243351_b : public AbstractAlgorithm {
 public:
-	Algorithm1();
+	_308243351_b();
 	Move move();
 	void hitWall();
 	void hitBookmark(int seq);

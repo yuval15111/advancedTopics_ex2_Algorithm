@@ -21,18 +21,24 @@
     <ClInclude Include="AbstractAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Algorithm1.h">
+    <ClInclude Include="Auxiliary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auxiliary.h">
+    <ClInclude Include="_308243351_a.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_308243351_b.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm1.cpp">
+    <ClCompile Include="Auxiliary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Auxiliary.cpp">
+    <ClCompile Include="_308243351_a.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_308243351_b.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
