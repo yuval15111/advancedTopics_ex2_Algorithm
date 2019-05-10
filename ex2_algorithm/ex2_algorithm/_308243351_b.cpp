@@ -103,7 +103,7 @@ void _308243351_b::generateMove(vector<Move> exclusions) {
 		srand((unsigned int)time(0));
 		// generates a step action until it finds an action not in exclusions
 		do {
-			m_currMove = Move(rand() % NUM_OF_STEPS);
+			m_currMove = Move(rand()*rand() % NUM_OF_STEPS);
 		} while (inVector(exclusions));
 	}
 	if (numOfSteps() != 0 && m_currMove == m_moveVector[numOfSteps() - 1]) m_currMoveCounter++; // updates the current action counter
