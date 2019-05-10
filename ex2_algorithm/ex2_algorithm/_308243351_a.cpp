@@ -97,7 +97,8 @@ void _308243351_a::generateMove(vector<Move> exclusions) {
 	if (m_moveVector.size() % STEPS_NUM_TO_BOOKMARK == 0) {	// TIME FOR A BOOKMARK
 		m_currMove = Move::BOOKMARK;
 		for(unsigned int i = 0; i < m_bookmarkVector.size(); ++i)
-			cout << "BOOKMARK AT: " << m_bookmarkVector[i].first <<", " << m_bookmarkVector[i].second << endl;
+			cout << "BOOKMARK AT: " << m_bookmarkVector[i].first <<", " << m_bookmarkVector[i].second << " ";
+		cout << endl;
 		m_bookmarkVector.push_back(m_location);
 	}
 	else {														// STEP ACTION
