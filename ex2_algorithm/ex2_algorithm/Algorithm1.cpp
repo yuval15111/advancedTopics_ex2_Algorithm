@@ -129,7 +129,7 @@ vector<Move> Algorithm1::findExclusions()
 	char left = getCharByDirection(Move::LEFT);
 	char right = getCharByDirection(Move::RIGHT);
 
-	vector <char> directions = { up, down, right, left };
+	vector <char> directions = { up, right, down, left };
 	vector <int> visit = { 0,0,0,0 };
 	int space = 0;
 	int wall = 0;
