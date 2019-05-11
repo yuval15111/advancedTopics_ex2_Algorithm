@@ -5,8 +5,8 @@
 #include "AlgorithmRegistration.h"
 #include "Auxiliary.h"
 
-#define STEPS_NUM_TO_BOOKMARK 5
-#define MAX_SAME_ACTION_NUM 30
+#define STEPS_NUM_TO_BOOKMARK 7
+#define MAX_SAME_ACTION_NUM 15
 
 class _308243351_b : public AbstractAlgorithm {
 public:
