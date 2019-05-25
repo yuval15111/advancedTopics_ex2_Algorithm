@@ -7,6 +7,7 @@ _308243351_b::_308243351_b() {
 	m_location = make_pair(0, 0);
 	updateMapping(m_location, SPACE_CHAR);
 	m_currMove = Move::BOOKMARK;
+	srand((unsigned int)time(0));
 }
 
 
@@ -99,7 +100,6 @@ void _308243351_b::generateMove(vector<Move> exclusions) {
 		m_bookmarkVector.push_back(m_location);
 	}
 	else {														// STEP ACTION
-		srand((unsigned int)time(0));
 		// generates a step action until it finds an action not in exclusions
 		do {
 			m_currMove = Move(rand() % NUM_OF_STEPS);
