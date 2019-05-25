@@ -1,5 +1,7 @@
 #include "Auxiliary.h"
 
+/* --------------------------------- Some helper functions -------------------------------- */
+
 /* return: the opposite direction of Move a */
 Move operator!(const Move& a) {
 	switch (a) {
@@ -16,6 +18,7 @@ Move operator!(const Move& a) {
 	}
 }
 
+/* returns the capital letter represents the move. */
 char getActionChar(const Move& a) {
 	switch (a) {
 	case Move::UP:

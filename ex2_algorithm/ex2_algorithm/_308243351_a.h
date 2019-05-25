@@ -6,24 +6,42 @@
 #include "Auxiliary.h"
 
 #define STEPS_NUM_TO_BOOKMARK 25
-#define MAX_SAME_ACTION_NUM 30
+#define MAX_SAME_MOVE_NUM 30
 
 class _308243351_a : public AbstractAlgorithm {
 public:
+
+	/* ---------------------------------------------------------------------------------------- */
+	/* ----------------------------- Algorithm A public functions ----------------------------- */
+	/* ---------------------------------------------------------------------------------------- */
+
+	/* ------------------------------------- c'tor -------------------------------------- */
 	_308243351_a();
-	Move move();
-	void hitWall();
-	void hitBookmark(int seq);
+
+	/* --------------------------------- Main functions --------------------------------- */
+	Move					move();
+	void					hitWall();
+	void					hitBookmark(int seq);
+
 
 private:
+
+	/* ---------------------------------------------------------------------------------------- */
+	/* ---------------------------------- Algorithm A members --------------------------------- */
+	/* ---------------------------------------------------------------------------------------- */
+
 	int						m_rowsNum = MAX_INT;
 	int						m_colsNum = MAX_INT;
 	vector<Coordinate>		m_bookmarkVector;
 	vector<Move>			m_moveVector;
 	Coordinate				m_location;
-	map <Coordinate, char>	m_mazeMapping;
+	map <Coordinate, char>	m_mazeMapping; // a map contains every revealed coordinate's char value
 	Move					m_currMove;
 	int						m_currMoveCounter = 0;
+
+	/* ---------------------------------------------------------------------------------------- */
+	/* ----------------------------- Algorithm A private functions ---------------------------- */
+	/* ---------------------------------------------------------------------------------------- */
 
 	void					updateLocation(const bool undo = false);
 	void					updateMapping(const Coordinate loc, char c);
@@ -32,8 +50,8 @@ private:
 	vector<Move>			findExclusions();
 	void					arrangeMapping(bool rows);
 	char					getCharByDirection(Move a);
-	inline int				numOfSteps() { return (int)m_moveVector.size(); }
 	Coordinate				getCoordinateByMove(Coordinate loc, const Move & a);
+	inline int				numOfSteps() { return (int)m_moveVector.size(); }
 };
 
 #endif
