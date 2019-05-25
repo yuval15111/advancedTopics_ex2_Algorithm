@@ -19,12 +19,6 @@
 #define WALL_CHAR '#'
 #define NUM_OF_STEPS 4
 
-/* ------------------------------- Status enum declaration  ------------------------------- */
-
-enum class Status {
-	None, Visited, Wall
-};
-
 /* ---------------------------- typedefs/using for readability ---------------------------- */
 
 using namespace std;
