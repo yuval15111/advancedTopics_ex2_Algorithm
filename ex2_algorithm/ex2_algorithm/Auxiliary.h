@@ -10,6 +10,7 @@
 #include <utility>
 #include <fstream>
 #include <sys/stat.h>
+#include <algorithm>
 
 #include "AbstractAlgorithm.h"
 
